@@ -19,7 +19,7 @@ const published = post.data.pubDate.toLocaleDateString("en-US", {
   <h3>{post.data.title}</h3>
   <p>{post.data.description}</p>
   <ul class="blog-tags">
-    {post.data.tags.map((tag) => (
+    {post.data.tags.map((tag: string) => (
       <li>{tag}</li>
     ))}
   </ul>

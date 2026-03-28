@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import BlogPostCard from "../components/BlogPostCard.astro";
 import ExperienceTimeline from "../components/ExperienceTimeline.astro";
 import Footer from "../components/Footer.astro";
@@ -9,18 +10,17 @@ import HomelabDiagram from "../components/HomelabDiagram.astro";
 import HomelabServices from "../components/HomelabServices.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SkillsGrid from "../components/SkillsGrid.astro";
+import { getFeaturedProjects, sortPostsByDateDesc } from "../lib/content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const projects = await getCollection("projects");
-const publishedPosts = await getCollection("blog", ({ data }) => !data.draft);
+const publishedPosts = await getCollection(
+  "blog",
+  (entry: CollectionEntry<"blog">) => !entry.data.draft,
+);
 
-const featuredProjects = projects
-  .filter((project) => project.data.featured)
-  .slice(0, 4);
-
-const latestPosts = [...publishedPosts]
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 3);
+const featuredProjects = getFeaturedProjects(projects).slice(0, 4);
+const latestPosts = sortPostsByDateDesc(publishedPosts).slice(0, 3);
 
 const experienceItems = [
   {
@@ -138,7 +138,9 @@ const homelabServices = [
       <div class="container section-stack">
         <h2>Featured Projects</h2>
         <div class="card-grid">
-          {featuredProjects.map((project) => <ProjectCard project={project} />)}
+          {featuredProjects.map((project: CollectionEntry<"projects">) => (
+            <ProjectCard project={project} />
+          ))}
         </div>
       </div>
     </section>
@@ -169,7 +171,9 @@ const homelabServices = [
       <div class="container section-stack">
         <h2>Blog Preview</h2>
         <div class="card-grid">
-          {latestPosts.map((post) => <BlogPostCard post={post} />)}
+          {latestPosts.map((post: CollectionEntry<"blog">) => (
+            <BlogPostCard post={post} />
+          ))}
         </div>
       </div>
     </section>

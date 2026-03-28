@@ -18,14 +18,14 @@ const { project } = Astro.props;
   {
     project.data.metrics && project.data.metrics.length > 0 && (
       <ul class="project-metrics">
-        {project.data.metrics.map((metric) => (
+        {project.data.metrics.map((metric: string) => (
           <li>{metric}</li>
         ))}
       </ul>
     )
   }
   <ul class="project-tech">
-    {project.data.tech.map((item) => (
+    {project.data.tech.map((item: string) => (
       <li>{item}</li>
     ))}
   </ul>
