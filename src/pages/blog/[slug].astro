@@ -8,8 +8,14 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const entries = await getCollection("blog", (entry) => !entry.data.draft);
-  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+  const entries = await getCollection(
+    "blog",
+    (entry: CollectionEntry<"blog">) => !entry.data.draft,
+  );
+  return entries.map((entry: CollectionEntry<"blog">) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props as Props;

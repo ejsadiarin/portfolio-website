@@ -9,7 +9,10 @@ interface Props {
 
 export async function getStaticPaths() {
   const entries = await getCollection("projects");
-  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+  return entries.map((entry: CollectionEntry<"projects">) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props as Props;
@@ -22,7 +25,7 @@ const { Content } = await render(entry);
   <p>{entry.data.description}</p>
   <p class="role">{entry.data.role}</p>
   <ul class="tech-list">
-    {entry.data.tech.map((item) => (
+    {entry.data.tech.map((item: string) => (
       <li>{item}</li>
     ))}
   </ul>

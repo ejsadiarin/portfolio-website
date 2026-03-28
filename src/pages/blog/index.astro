@@ -5,14 +5,14 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 import { sortPostsByDateDesc } from "../../lib/content";
 
 const entries = await getCollection("blog", (entry: CollectionEntry<"blog">) => !entry.data.draft);
-const posts = sortPostsByDateDesc(entries);
+const posts: CollectionEntry<"blog">[] = sortPostsByDateDesc(entries);
 ---
 
 <BlogLayout title="Blog" description="Technical writing by Edwin Sadiarin">
   <p class="meta">Writing and engineering notes</p>
   <h1>Blog</h1>
   <ul class="post-list">
-    {posts.map((post) => (
+    {posts.map((post: CollectionEntry<"blog">) => (
       <li>
         <a href={`/blog/${post.slug}/`} class="post-link">
           <span>{post.data.title}</span>
