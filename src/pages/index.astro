@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BlogPostCard from "../components/BlogPostCard.astro";
+import { ContactForm } from "../components/ContactForm";
 import ExperienceTimeline from "../components/ExperienceTimeline.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -181,13 +182,7 @@ const homelabServices = [
     <section id="contact" class="section">
       <div class="container section-stack">
         <h2>Contact</h2>
-        <p>
-          Reach out via email at
-          <a class="contact-link" href="mailto:ejsadiarin@gmail.com">
-            ejsadiarin@gmail.com
-          </a>
-          or connect on GitHub and LinkedIn.
-        </p>
+        <ContactForm client:load />
       </div>
     </section>
   </main>
@@ -206,12 +201,68 @@ const homelabServices = [
     gap: 1rem;
   }
 
-  .contact-link {
+  :global(.contact-form) {
+    display: grid;
+    gap: 1rem;
+    max-width: 40rem;
+  }
+
+  :global(.field-group) {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  :global(.field-group label) {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  :global(.field-group input),
+  :global(.field-group textarea) {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    font-family: inherit;
+  }
+
+  :global(.field-group input:focus-visible),
+  :global(.field-group textarea:focus-visible) {
+    border-color: var(--color-accent);
+    outline: none;
+  }
+
+  :global(.contact-form button) {
+    width: fit-content;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.5rem;
+    padding: 0.65rem 1rem;
+    background: transparent;
+    color: var(--color-accent);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  :global(.contact-form button:hover),
+  :global(.contact-form button:focus-visible) {
+    border-color: var(--color-accent-hover);
+    color: var(--color-accent-hover);
+  }
+
+  :global(.form-error) {
+    margin: 0;
+    color: #f87171;
+    font-size: 0.9rem;
+  }
+
+  :global(.contact-form a) {
     color: var(--color-accent);
   }
 
-  .contact-link:hover,
-  .contact-link:focus-visible {
+  :global(.contact-form a:hover),
+  :global(.contact-form a:focus-visible) {
     color: var(--color-accent-hover);
   }
 </style>
