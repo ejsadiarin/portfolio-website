@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page Not Found | Edwin Sadiarin" description="Requested page was not found.">
+  <main class="site-shell">
+    <section class="container not-found">
+      <p class="code">404</p>
+      <h1>Page not found</h1>
+      <p>The page you requested does not exist or has moved.</p>
+      <a href="/" class="home-link">Return to homepage</a>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: calc(100vh - 7rem);
+    display: grid;
+    align-content: center;
+    gap: 0.9rem;
+  }
+
+  .code {
+    margin: 0;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+  }
+
+  h1,
+  p {
+    margin: 0;
+  }
+
+  h1 {
+    color: var(--color-text-primary);
+  }
+
+  .home-link {
+    width: fit-content;
+    border: 1px solid var(--color-accent);
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    color: var(--color-accent);
+  }
+
+  .home-link:hover,
+  .home-link:focus-visible {
+    border-color: var(--color-accent-hover);
+    color: var(--color-accent-hover);
+  }
+</style>

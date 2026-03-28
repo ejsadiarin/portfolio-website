@@ -1,0 +1,31 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Edwin Sadiarin`} description={description}>
+  <Header />
+  <main class="site-shell">
+    <article class="container detail-shell">
+      <slot />
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .detail-shell {
+    display: grid;
+    gap: 1.25rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+</style>

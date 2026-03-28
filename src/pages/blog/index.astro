@@ -1,0 +1,72 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import { sortPostsByDateDesc } from "../../lib/content";
+
+const entries = await getCollection("blog", (entry: CollectionEntry<"blog">) => !entry.data.draft);
+const posts = sortPostsByDateDesc(entries);
+---
+
+<BlogLayout title="Blog" description="Technical writing by Edwin Sadiarin">
+  <p class="meta">Writing and engineering notes</p>
+  <h1>Blog</h1>
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.slug}/`} class="post-link">
+          <span>{post.data.title}</span>
+          <span class="date">
+            {post.data.pubDate.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BlogLayout>
+
+<style>
+  .meta {
+    margin: 0;
+    color: var(--color-accent);
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--color-text-primary);
+  }
+
+  .post-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .post-link {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.8rem;
+    padding: 0.9rem 1rem;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+  }
+
+  .post-link:hover,
+  .post-link:focus-visible {
+    border-color: var(--color-accent);
+  }
+
+  .date {
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+</style>

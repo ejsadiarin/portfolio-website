@@ -1,0 +1,71 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+
+interface Props {
+  entry: CollectionEntry<"projects">;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection("projects");
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props as Props;
+const { Content } = await render(entry);
+---
+
+<ProjectLayout title={entry.data.title} description={entry.data.description}>
+  <p class="meta">Project</p>
+  <h1>{entry.data.title}</h1>
+  <p>{entry.data.description}</p>
+  <p class="role">{entry.data.role}</p>
+  <ul class="tech-list">
+    {entry.data.tech.map((item) => (
+      <li>{item}</li>
+    ))}
+  </ul>
+  <Content />
+</ProjectLayout>
+
+<style>
+  .meta {
+    margin: 0;
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--color-text-primary);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .role {
+    color: var(--color-text-primary);
+  }
+
+  .tech-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-list li {
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    font-size: 0.84rem;
+  }
+</style>
