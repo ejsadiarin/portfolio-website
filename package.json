@@ -10,8 +10,9 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run src tests/config",
     "test:e2e": "playwright test",
+    "test:mobile": "playwright test tests/e2e/mobile.spec.ts",
     "test": "npm run test:unit && npm run test:e2e"
   },
   "keywords": [],
