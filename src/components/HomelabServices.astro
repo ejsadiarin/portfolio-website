@@ -1,0 +1,46 @@
+---
+interface ServiceItem {
+  name: string;
+  description: string;
+}
+
+interface Props {
+  services: ServiceItem[];
+}
+
+const { services } = Astro.props;
+---
+
+<div class="homelab-services">
+  {services.map((service) => (
+    <article class="service-card">
+      <h3>{service.name}</h3>
+      <p>{service.description}</p>
+    </article>
+  ))}
+</div>
+
+<style>
+  .homelab-services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.9rem;
+  }
+
+  .service-card {
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-bg-secondary);
+    padding: 1rem;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+  }
+
+  p {
+    margin: 0;
+  }
+</style>

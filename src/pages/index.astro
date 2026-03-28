@@ -1,53 +1,213 @@
 ---
+import { getCollection } from "astro:content";
+import BlogPostCard from "../components/BlogPostCard.astro";
+import ExperienceTimeline from "../components/ExperienceTimeline.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import HomelabDiagram from "../components/HomelabDiagram.astro";
+import HomelabServices from "../components/HomelabServices.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SkillsGrid from "../components/SkillsGrid.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = await getCollection("projects");
+const publishedPosts = await getCollection("blog", ({ data }) => !data.draft);
+
+const featuredProjects = projects
+  .filter((project) => project.data.featured)
+  .slice(0, 4);
+
+const latestPosts = [...publishedPosts]
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const experienceItems = [
+  {
+    role: "Lead Software Engineer",
+    org: "La Salle Computer Society",
+    period: "Aug 2025 - Current",
+    summary:
+      "Led platform engineering and backend delivery for internal systems and large-scale events.",
+  },
+  {
+    role: "Technical Founder",
+    org: "Thincode",
+    period: "Dec 2025 - Current",
+    summary:
+      "Built automation workflows and client systems with a focus on cloud reliability and developer experience.",
+  },
+  {
+    role: "Associate Vice President",
+    org: "La Salle Computer Society",
+    period: "Oct 2024 - Current",
+    summary:
+      "Directed engineering initiatives, mentorship tracks, and service-level reliability practices.",
+  },
+  {
+    role: "SDE Intern",
+    org: "Emerson",
+    period: "Mar 2026 - Current",
+    summary:
+      "Supported backend and platform initiatives focused on observability, reliability, and scalable services.",
+  },
+];
+
+const skillGroups = [
+  {
+    title: "Languages",
+    items: ["Python", "Bash", "TypeScript", "Go", "Java", "SQL"],
+  },
+  {
+    title: "Infrastructure and DevOps",
+    items: [
+      "Kubernetes",
+      "Docker",
+      "Terraform",
+      "Ansible",
+      "ArgoCD",
+      "GitHub Actions",
+    ],
+  },
+  {
+    title: "Databases",
+    items: ["PostgreSQL", "Redis", "MongoDB"],
+  },
+  {
+    title: "Monitoring",
+    items: ["Prometheus", "Grafana", "Jaeger", "Loki"],
+  },
+  {
+    title: "AI and ML",
+    items: ["NLP", "Agentic Workflows", "OpenAI APIs", "Google AI APIs"],
+  },
+];
+
+const homelabServices = [
+  {
+    name: "GitOps Control Plane",
+    description:
+      "ArgoCD manages deployment state and rollback safety across internal services.",
+  },
+  {
+    name: "Observability Stack",
+    description:
+      "Prometheus, Grafana, Jaeger, and Loki provide metrics, traces, and logs.",
+  },
+  {
+    name: "Identity and Access",
+    description:
+      "Self-hosted identity services secure access for dashboards, APIs, and automation.",
+  },
+  {
+    name: "Automation Services",
+    description:
+      "Scheduled jobs and event-based workers run backend operations and integrations.",
+  },
+];
 ---
 
 <BaseLayout title="Edwin Sadiarin" description="Software engineer portfolio">
   <Header />
   <main class="site-shell">
-    <section id="hero" class="section">
-      <div class="container">
-        <h1>Edwin Sadiarin</h1>
-        <p>Software engineer focused on infrastructure, DevOps, and AI.</p>
-      </div>
-    </section>
+    <Hero />
     <section id="about" class="section">
-      <div class="container">
+      <div class="container section-stack">
         <h2>About</h2>
+        <p>
+          I am a software engineer from DLSU who enjoys designing reliable systems
+          where infrastructure, backend development, and automation work together.
+          My current work blends platform engineering with practical product
+          delivery for teams that need speed without sacrificing resilience.
+        </p>
+        <p>
+          I have led and shipped projects through LSCS and Thincode, and I am
+          currently interning at Emerson while building production-style systems in
+          my homelab. I am especially interested in DevOps, SRE, and AI-enabled
+          workflows for developer productivity.
+        </p>
+        <p>
+          Outside engineering, I train Taekwondo and CrossFit, enjoy coffee and
+          tea, and spend a lot of weekends self-hosting and experimenting with new
+          infra tools.
+        </p>
       </div>
     </section>
+
     <section id="projects" class="section">
-      <div class="container">
-        <h2>Projects</h2>
+      <div class="container section-stack">
+        <h2>Featured Projects</h2>
+        <div class="card-grid">
+          {featuredProjects.map((project) => <ProjectCard project={project} />)}
+        </div>
       </div>
     </section>
+
     <section id="experience" class="section">
-      <div class="container">
+      <div class="container section-stack">
         <h2>Experience</h2>
+        <ExperienceTimeline items={experienceItems} />
       </div>
     </section>
+
     <section id="skills" class="section">
-      <div class="container">
+      <div class="container section-stack">
         <h2>Skills</h2>
+        <SkillsGrid groups={skillGroups} />
       </div>
     </section>
+
     <section id="homelab" class="section">
-      <div class="container">
+      <div class="container section-stack">
         <h2>Homelab</h2>
+        <HomelabDiagram />
+        <HomelabServices services={homelabServices} />
       </div>
     </section>
+
     <section id="blog" class="section">
-      <div class="container">
-        <h2>Blog</h2>
+      <div class="container section-stack">
+        <h2>Blog Preview</h2>
+        <div class="card-grid">
+          {latestPosts.map((post) => <BlogPostCard post={post} />)}
+        </div>
       </div>
     </section>
+
     <section id="contact" class="section">
-      <div class="container">
+      <div class="container section-stack">
         <h2>Contact</h2>
+        <p>
+          Reach out via email at
+          <a class="contact-link" href="mailto:ejsadiarin@gmail.com">
+            ejsadiarin@gmail.com
+          </a>
+          or connect on GitHub and LinkedIn.
+        </p>
       </div>
     </section>
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  .section-stack {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .contact-link {
+    color: var(--color-accent);
+  }
+
+  .contact-link:hover,
+  .contact-link:focus-visible {
+    color: var(--color-accent-hover);
+  }
+</style>
