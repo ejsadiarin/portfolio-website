@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { useState, type FormEventHandler } from "react";
 import { buildMailtoHref, validateContact, type ContactInput } from "../lib/contact";
 
 const INITIAL_VALUES: ContactInput = {
@@ -11,7 +11,7 @@ export function ContactForm() {
   const [values, setValues] = useState<ContactInput>(INITIAL_VALUES);
   const [errors, setErrors] = useState<Partial<Record<keyof ContactInput, string>>>({});
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     const result = validateContact(values);
@@ -22,7 +22,7 @@ export function ContactForm() {
     }
 
     window.location.href = buildMailtoHref(values);
-  }
+  };
 
   return (
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
