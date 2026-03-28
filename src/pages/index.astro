@@ -1,10 +1,53 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Edwin Sadiarin</title>
-  </head>
-  <body>
-    <h1>Edwin Sadiarin</h1>
-  </body>
-</html>
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Edwin Sadiarin" description="Software engineer portfolio">
+  <Header />
+  <main class="site-shell">
+    <section id="hero" class="section">
+      <div class="container">
+        <h1>Edwin Sadiarin</h1>
+        <p>Software engineer focused on infrastructure, DevOps, and AI.</p>
+      </div>
+    </section>
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About</h2>
+      </div>
+    </section>
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+      </div>
+    </section>
+    <section id="experience" class="section">
+      <div class="container">
+        <h2>Experience</h2>
+      </div>
+    </section>
+    <section id="skills" class="section">
+      <div class="container">
+        <h2>Skills</h2>
+      </div>
+    </section>
+    <section id="homelab" class="section">
+      <div class="container">
+        <h2>Homelab</h2>
+      </div>
+    </section>
+    <section id="blog" class="section">
+      <div class="container">
+        <h2>Blog</h2>
+      </div>
+    </section>
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
