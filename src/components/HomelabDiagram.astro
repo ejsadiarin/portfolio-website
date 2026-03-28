@@ -1,10 +1,11 @@
 <div class="homelab-diagram" aria-label="Homelab topology diagram">
   <p class="terminal-brand homelab-label">k3s-cluster.internal</p>
-  <div class="homelab-row">
-    <div class="node">Gateway\nTraefik</div>
-    <div class="node">Control Plane\nK3s</div>
-    <div class="node">Worker\nApps + APIs</div>
-  </div>
+  <img
+    class="homelab-image"
+    src="/images/homelab-topology.svg"
+    alt="Homelab K3s cluster topology"
+    loading="lazy"
+  />
   <p class="homelab-note">
     GitOps-managed services behind Traefik with metrics and tracing via Prometheus,
     Grafana, and Jaeger.
@@ -27,21 +28,12 @@
     font-size: 0.9rem;
   }
 
-  .homelab-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.6rem;
-  }
-
-  .node {
-    white-space: pre-line;
-    text-align: center;
+  .homelab-image {
+    width: 100%;
+    height: auto;
     border: 1px solid var(--color-border);
     border-radius: 0.7rem;
-    background: var(--color-bg-tertiary);
-    color: var(--color-text-primary);
-    padding: 0.8rem;
-    font-size: 0.9rem;
+    background: var(--color-bg-primary);
   }
 
   .homelab-note {

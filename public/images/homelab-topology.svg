@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Homelab K3s cluster topology</title>
+  <desc id="desc">Traffic enters through Traefik and routes to services in a K3s cluster with observability and data services.</desc>
+  <defs>
+    <style>
+      .bg { fill: #111111; }
+      .border { fill: none; stroke: #27272a; stroke-width: 2; }
+      .zone { fill: #0a0a0a; stroke: #27272a; stroke-width: 2; rx: 16; }
+      .node { fill: #1a1a1a; stroke: #3f3f46; stroke-width: 2; rx: 12; }
+      .edge { stroke: #fbbf24; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .label { fill: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-weight: 600; }
+      .small { fill: #a1a1aa; font-family: Inter, system-ui, sans-serif; font-size: 14px; }
+      .mono { fill: #fbbf24; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#fbbf24" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="960" height="540" />
+  <rect class="border" x="20" y="20" width="920" height="500" rx="18" />
+
+  <rect class="zone" x="60" y="60" width="840" height="95" />
+  <text class="label" x="84" y="102">Edge Layer</text>
+  <rect class="node" x="280" y="78" width="400" height="58" />
+  <text class="label" x="420" y="113" text-anchor="middle">Traefik Gateway</text>
+
+  <rect class="zone" x="60" y="190" width="840" height="165" />
+  <text class="label" x="84" y="228">K3s Cluster</text>
+  <rect class="node" x="105" y="252" width="230" height="78" />
+  <text class="label" x="220" y="286" text-anchor="middle">Control Plane</text>
+  <text class="small" x="220" y="307" text-anchor="middle">GitOps + Scheduling</text>
+
+  <rect class="node" x="365" y="252" width="230" height="78" />
+  <text class="label" x="480" y="286" text-anchor="middle">Apps and APIs</text>
+  <text class="small" x="480" y="307" text-anchor="middle">Portfolio, internal services</text>
+
+  <rect class="node" x="625" y="252" width="230" height="78" />
+  <text class="label" x="740" y="286" text-anchor="middle">Observability</text>
+  <text class="small" x="740" y="307" text-anchor="middle">Prometheus, Grafana, Jaeger</text>
+
+  <rect class="zone" x="60" y="388" width="840" height="95" />
+  <text class="label" x="84" y="428">Data and Automation</text>
+  <rect class="node" x="205" y="405" width="230" height="58" />
+  <text class="label" x="320" y="440" text-anchor="middle">PostgreSQL + Redis</text>
+  <rect class="node" x="525" y="405" width="230" height="58" />
+  <text class="label" x="640" y="440" text-anchor="middle">ArgoCD + CI/CD</text>
+
+  <path class="edge" d="M480 136 L480 250" />
+  <path class="edge" d="M480 330 L320 403" />
+  <path class="edge" d="M480 330 L640 403" />
+
+  <text class="mono" x="84" y="500">k3s-cluster.internal :: managed with GitOps, routed by Traefik</text>
+</svg>
