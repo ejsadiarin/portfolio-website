@@ -13,15 +13,15 @@ A personal portfolio website for Edwin Sadiarin, targeting Software Engineering 
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Astro (latest, static output) |
-| Styling | Tailwind CSS v4 (via Vite plugin) |
-| Language | TypeScript throughout |
-| Content | Astro Content Collections (Markdown/MDX) |
-| Interactive | React islands (minimal - contact form only) |
-| Deployment (Primary) | Cloudflare Pages |
-| Deployment (Staging) | Docker + nginx + Traefik (homelab) |
+| Layer                | Technology                                  |
+| -------------------- | ------------------------------------------- |
+| Framework            | Astro (latest, static output)               |
+| Styling              | Tailwind CSS v4 (via Vite plugin)           |
+| Language             | TypeScript throughout                       |
+| Content              | Astro Content Collections (Markdown/MDX)    |
+| Interactive          | React islands (minimal - contact form only) |
+| Deployment (Primary) | Cloudflare Pages                            |
+| Deployment (Staging) | Docker + nginx + Traefik (homelab)          |
 
 ### Why Astro over React SPA
 
@@ -86,47 +86,47 @@ portfolio-website-ejsadiarin/
 Single page with all sections, fixed header navigation:
 
 1. **Hero**
-   - Name: "Edwin Sadiarin"
-   - Terminal-style tagline: `> software_engineer --focus="infra,devops,ai"`
-   - Brief one-liner
-   - CTAs: "View Projects" | "Contact Me"
-   - Social links: GitHub, LinkedIn, Email
+    - Name: "Edwin Sadiarin"
+    - Terminal-style tagline: `> software_engineer --focus="infra,devops,ai"`
+    - Brief one-liner
+    - CTAs: "View Projects" | "Contact Me"
+    - Social links: GitHub, LinkedIn, Email
 
 2. **About**
-   - 2-3 paragraphs: background, motivation, current focus
-   - Mentions: DLSU, LSCS, Thincode, Emerson internship
-   - Personal: Taekwondo, CrossFit, tea/coffee, selfhosting
+    - 2-3 paragraphs: background, motivation, current focus
+    - Mentions: DLSU, LSCS, Thincode, Emerson internship
+    - Personal: Taekwondo, CrossFit, tea/coffee, selfhosting
 
 3. **Projects** (Featured List layout)
-   - 4-6 key projects with title, role, metrics, tech tags
-   - Links to detail pages
-   - Projects: LEAP 2025, Homelab, Flare, LSCS Core, Distributed DB, Open Source contributions
+    - 4-6 key projects with title, role, metrics, tech tags
+    - Links to detail pages
+    - Projects: LEAP 2025, Homelab, Flare, LSCS Core, Distributed DB, Open Source contributions
 
 4. **Experience** (Vertical Timeline)
-   - Lead SWE @ LSCS (Aug 2025 - Present)
-   - Technical Founder @ Thincode (Dec 2025 - Present)
-   - AVP @ LSCS (Oct 2024 - Present)
-   - SDE Intern @ Emerson (Current)
+    - Lead SWE @ LSCS (Aug 2025 - Present)
+    - Technical Founder @ Thincode (Dec 2025 - Present)
+    - AVP @ LSCS (Oct 2024 - Present)
+    - SDE Intern @ Emerson (Mar 2026 - Current)
 
 5. **Skills** (Grouped categories)
-   - Languages: Python, Bash, TypeScript, Go, Java, SQL
-   - Infrastructure/DevOps: Kubernetes, Docker, Terraform, Ansible, ArgoCD, GitHub Actions
-   - Databases: PostgreSQL, Redis, MongoDB
-   - Monitoring: Prometheus, Grafana, Jaeger, Loki
-   - AI/ML: NLP, Agentic Workflows, OpenAI/Google AI APIs
+    - Languages: Python, Bash, TypeScript, Go, Java, SQL
+    - Infrastructure/DevOps: Kubernetes, Docker, Terraform, Ansible, ArgoCD, GitHub Actions
+    - Databases: PostgreSQL, Redis, MongoDB
+    - Monitoring: Prometheus, Grafana, Jaeger, Loki
+    - AI/ML: NLP, Agentic Workflows, OpenAI/Google AI APIs
 
 6. **Homelab** (Unique showcase)
-   - Infrastructure diagram (SVG) - K3s cluster, services, network topology
-   - Services list with descriptions
-   - Deferred: Live status integration (HomelabStatus.tsx)
+    - Infrastructure diagram (SVG) - K3s cluster, services, network topology
+    - Services list with descriptions
+    - Deferred: Live status integration (HomelabStatus.tsx)
 
 7. **Blog Preview**
-   - Latest 3 posts with title, date, excerpt
-   - "View All Posts" link
+    - Latest 3 posts with title, date, excerpt
+    - "View All Posts" link
 
 8. **Contact**
-   - Form: Name, Email, Message (React island)
-   - Alternative: direct email + social links
+    - Form: Name, Email, Message (React island)
+    - Alternative: direct email + social links
 
 ### Separate Pages
 
@@ -140,15 +140,15 @@ Single page with all sections, fixed header navigation:
 ### Colors
 
 ```css
---color-bg-primary: #0a0a0a;      /* Main background */
---color-bg-secondary: #111111;    /* Cards, code blocks */
---color-bg-tertiary: #1a1a1a;     /* Hover states */
---color-accent: #fbbf24;          /* Amber - links, highlights, CTAs */
---color-accent-hover: #f59e0b;    /* Darker amber for hover */
---color-text-primary: #ffffff;    /* Headings */
---color-text-secondary: #a1a1aa;  /* Body text */
---color-text-muted: #52525b;      /* Subtle text */
---color-border: #27272a;          /* Subtle borders */
+--color-bg-primary: #0a0a0a; /* Main background */
+--color-bg-secondary: #111111; /* Cards, code blocks */
+--color-bg-tertiary: #1a1a1a; /* Hover states */
+--color-accent: #fbbf24; /* Amber - links, highlights, CTAs */
+--color-accent-hover: #f59e0b; /* Darker amber for hover */
+--color-text-primary: #ffffff; /* Headings */
+--color-text-secondary: #a1a1aa; /* Body text */
+--color-text-muted: #52525b; /* Subtle text */
+--color-border: #27272a; /* Subtle borders */
 ```
 
 ### Typography
@@ -177,35 +177,35 @@ Single page with all sections, fixed header navigation:
 
 ```typescript
 // src/content/config.ts
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const projects = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    role: z.string(),
-    date: z.string(),
-    featured: z.boolean().default(false),
-    metrics: z.array(z.string()).optional(),
-    tech: z.array(z.string()),
-    github: z.string().url().optional(),
-    live: z.string().url().optional(),
-    image: z.string().optional(),
-  }),
+    type: "content",
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        role: z.string(),
+        date: z.string(),
+        featured: z.boolean().default(false),
+        metrics: z.array(z.string()).optional(),
+        tech: z.array(z.string()),
+        github: z.string().url().optional(),
+        live: z.string().url().optional(),
+        image: z.string().optional(),
+    }),
 });
 
 const blog = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    pubDate: z.date(),
-    updatedDate: z.date().optional(),
-    tags: z.array(z.string()),
-    draft: z.boolean().default(false),
-    image: z.string().optional(),
-  }),
+    type: "content",
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        pubDate: z.date(),
+        updatedDate: z.date().optional(),
+        tags: z.array(z.string()),
+        draft: z.boolean().default(false),
+        image: z.string().optional(),
+    }),
 });
 
 export const collections = { projects, blog };
@@ -217,9 +217,9 @@ export const collections = { projects, blog };
 
 - Connect GitHub repo to Cloudflare Pages
 - Build settings:
-  - Framework preset: Astro
-  - Build command: `npm run build`
-  - Output directory: `dist`
+    - Framework preset: Astro
+    - Build command: `npm run build`
+    - Output directory: `dist`
 - Custom domain: `ejsadiarin.com` (Cloudflare DNS)
 - Benefits: Global CDN, auto SSL, auto-deploy on push
 
@@ -244,21 +244,21 @@ EXPOSE 80
 # docker-compose.yml
 version: "3.8"
 services:
-  portfolio:
-    build: .
-    container_name: portfolio-ejsadiarin
-    restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.portfolio.rule=Host(`ejsadiarin.com`)"
-      - "traefik.http.routers.portfolio.entrypoints=https"
-      - "traefik.http.routers.portfolio.tls.certresolver=letsencrypt"
-    networks:
-      - traefik-proxy
+    portfolio:
+        build: .
+        container_name: portfolio-ejsadiarin
+        restart: unless-stopped
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.portfolio.rule=Host(`ejsadiarin.com`)"
+            - "traefik.http.routers.portfolio.entrypoints=https"
+            - "traefik.http.routers.portfolio.tls.certresolver=letsencrypt"
+        networks:
+            - traefik-proxy
 
 networks:
-  traefik-proxy:
-    external: true
+    traefik-proxy:
+        external: true
 ```
 
 ## Deferred Features

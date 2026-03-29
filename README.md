@@ -37,11 +37,68 @@ Full test suite:
 npm run test
 ```
 
-## Cloudflare Pages settings
+## Deploy to Cloudflare Pages (wrangler)
 
-- Framework preset: Astro
-- Build command: `npm run build`
-- Output directory: `dist`
+This project uses [wrangler](https://developers.cloudflare.com/workers/wrangler/) to deploy
+static Astro builds to Cloudflare Pages from the CLI — no dashboard setup required.
+
+### Prerequisites
+
+1. A Cloudflare account (free tier works).
+2. Install wrangler and authenticate:
+
+```bash
+bun install
+npx wrangler login
+```
+
+This opens a browser to authorize wrangler with your Cloudflare account.
+
+### First-time setup
+
+Create the Pages project on Cloudflare (only once):
+
+```bash
+npx wrangler pages project create portfolio-ejsadiarin --production-branch main
+```
+
+Then point your custom domain in the Cloudflare dashboard:
+**Workers & Pages > portfolio-ejsadiarin > Custom domains > Set up a custom domain**
+
+### Deploy to production
+
+Build and push the `dist/` folder in one command:
+
+```bash
+bun run deploy
+```
+
+This runs `bun run build` then `wrangler pages deploy dist --project-name portfolio-ejsadiarin`.
+
+### Deploy a preview
+
+Preview deployments create a unique URL you can share for review:
+
+```bash
+bun run deploy:preview
+```
+
+### Manual deploy (without scripts)
+
+```bash
+bun run build
+npx wrangler pages deploy dist --project-name portfolio-ejsadiarin
+```
+
+### Useful wrangler commands
+
+| Command                              | Description               |
+| ------------------------------------ | ------------------------- |
+| `npx wrangler pages project list`    | List your Pages projects  |
+| `npx wrangler pages deployment list` | List recent deployments   |
+| `npx wrangler pages deployment tail` | Stream live function logs |
+| `npx wrangler login`                 | Re-authenticate           |
+| `npx wrangler logout`                | Sign out                  |
 
 ## Docker Compose startup
 

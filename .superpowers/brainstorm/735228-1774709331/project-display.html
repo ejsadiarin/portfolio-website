@@ -1,0 +1,105 @@
+<h2>How should projects be displayed?</h2>
+<p class="subtitle">This is your main showcase — recruiters spend most time here</p>
+
+<div class="cards">
+  <div class="card" data-choice="card-grid" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #0a0a0a; padding: 20px; min-height: 200px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px;">
+          <div style="background: #1a1a1a; height: 60px; border-radius: 4px; margin-bottom: 8px;"></div>
+          <div style="color: #fbbf24; font-size: 12px; font-weight: 600;">LEAP 2025</div>
+          <div style="color: #666; font-size: 10px; margin-top: 4px;">Kubernetes • Redis</div>
+        </div>
+        <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px;">
+          <div style="background: #1a1a1a; height: 60px; border-radius: 4px; margin-bottom: 8px;"></div>
+          <div style="color: #fbbf24; font-size: 12px; font-weight: 600;">K3s Homelab</div>
+          <div style="color: #666; font-size: 10px; margin-top: 4px;">ArgoCD • Terraform</div>
+        </div>
+        <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px;">
+          <div style="background: #1a1a1a; height: 60px; border-radius: 4px; margin-bottom: 8px;"></div>
+          <div style="color: #fbbf24; font-size: 12px; font-weight: 600;">Flare App</div>
+          <div style="color: #666; font-size: 10px; margin-top: 4px;">Node.js • SMS</div>
+        </div>
+        <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px;">
+          <div style="background: #1a1a1a; height: 60px; border-radius: 4px; margin-bottom: 8px;"></div>
+          <div style="color: #fbbf24; font-size: 12px; font-weight: 600;">LSCS Core</div>
+          <div style="color: #666; font-size: 10px; margin-top: 4px;">Go • OAuth2</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. Card Grid</h3>
+      <p>Visual thumbnails, quick scanning. Good for many projects. Each card links to detail page.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="featured-list" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #0a0a0a; padding: 20px; min-height: 200px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: #111; border: 1px solid #fbbf24; border-radius: 8px; padding: 16px; display: flex; gap: 16px;">
+          <div style="background: #1a1a1a; width: 80px; height: 60px; border-radius: 4px; flex-shrink: 0;"></div>
+          <div style="flex: 1;">
+            <div style="color: #fbbf24; font-size: 13px; font-weight: 600;">LEAP 2025 Registration System</div>
+            <div style="color: #888; font-size: 10px; margin-top: 4px;">30,000+ users • 99.9% uptime • Lead DevOps</div>
+            <div style="color: #666; font-size: 9px; margin-top: 6px;">K8s • Terraform • Redis • Node.js</div>
+          </div>
+        </div>
+        <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; display: flex; gap: 16px;">
+          <div style="background: #1a1a1a; width: 80px; height: 60px; border-radius: 4px; flex-shrink: 0;"></div>
+          <div style="flex: 1;">
+            <div style="color: #fff; font-size: 13px; font-weight: 600;">Core Kubernetes Homelab</div>
+            <div style="color: #888; font-size: 10px; margin-top: 4px;">20+ apps • GitOps • Personal infrastructure</div>
+            <div style="color: #666; font-size: 9px; margin-top: 6px;">K3s • ArgoCD • Ansible • Go</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. Featured List</h3>
+      <p>More detail visible upfront. Highlights key metrics. Better for fewer, high-impact projects. <strong>(Recommended)</strong></p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="bento-grid" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #0a0a0a; padding: 20px; min-height: 200px;">
+      <div style="display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; height: 160px;">
+        <div style="background: #111; border: 1px solid #fbbf24; border-radius: 8px; padding: 12px; grid-row: span 2;">
+          <div style="color: #fbbf24; font-size: 11px; font-weight: 600;">FEATURED</div>
+          <div style="color: #fff; font-size: 14px; font-weight: 600; margin-top: 8px;">LEAP 2025</div>
+          <div style="color: #666; font-size: 10px; margin-top: 4px;">30K users • K8s</div>
+        </div>
+        <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 10px;">
+          <div style="color: #fff; font-size: 11px; font-weight: 600;">Homelab</div>
+          <div style="color: #666; font-size: 9px;">K3s • ArgoCD</div>
+        </div>
+        <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 10px;">
+          <div style="color: #fff; font-size: 11px; font-weight: 600;">Flare</div>
+          <div style="color: #666; font-size: 9px;">Hackathon</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. Bento Grid</h3>
+      <p>Trendy asymmetric layout. Featured project gets prominence. Modern, visually interesting.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="terminal-style" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #0a0a0a; padding: 20px; min-height: 200px;">
+      <div style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 11px;">
+        <div style="color: #666; margin-bottom: 8px;">~/projects <span style="color: #fbbf24;">$</span> ls -la</div>
+        <div style="display: grid; grid-template-columns: auto auto 1fr; gap: 4px 16px; color: #888;">
+          <span style="color: #fbbf24;">drwxr-xr-x</span><span>leap-2025/</span><span style="color: #666;"># K8s, 30K users</span>
+          <span style="color: #fbbf24;">drwxr-xr-x</span><span>homelab/</span><span style="color: #666;"># K3s, GitOps</span>
+          <span style="color: #fbbf24;">drwxr-xr-x</span><span>flare/</span><span style="color: #666;"># Hackathon 2nd</span>
+          <span style="color: #fbbf24;">drwxr-xr-x</span><span>lscs-core/</span><span style="color: #666;"># Go, OAuth2</span>
+        </div>
+        <div style="color: #666; margin-top: 12px;">~/projects <span style="color: #fbbf24;">$</span> <span style="color: #fff;">_</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>D. Terminal Style</h3>
+      <p>Full commitment to the terminal aesthetic. Unique, memorable. Click "directories" to explore.</p>
+    </div>
+  </div>
+</div>
