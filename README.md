@@ -1,6 +1,6 @@
 # Portfolio Website
 
-Static Astro portfolio for Edwin Sadiarin, with content-driven pages, Playwright E2E coverage, and Docker/Cloudflare deployment paths.
+Static Astro portfolio for Ej Sadiarin, with content-driven pages, Playwright E2E coverage, and Docker/Cloudflare deployment paths.
 
 ## Local run
 
