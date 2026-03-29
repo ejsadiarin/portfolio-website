@@ -37,53 +37,61 @@ Full test suite:
 npm run test
 ```
 
-## Deploy to Cloudflare Pages (wrangler)
+## Deploy to Cloudflare Pages
 
-This project uses [wrangler](https://developers.cloudflare.com/workers/wrangler/) to deploy
-static Astro builds to Cloudflare Pages from the CLI — no dashboard setup required.
+Two deployment methods available on the same project. Private repos are fully supported.
 
-### Prerequisites
+### Option A: Git-integrated (auto-deploy on push)
 
-1. A Cloudflare account (free tier works).
-2. Install wrangler and authenticate:
+1. Go to Cloudflare dashboard > Workers & Pages
+2. Click **Create application > Pages > Import an existing Git repository**
+3. Connect your GitHub account (grant access to the private repo)
+4. Select the repo and configure:
+
+| Setting | Value |
+| --- | --- |
+| Production branch | `main` |
+| Build command | `bun run build` |
+| Build output directory | `dist` |
+
+5. Click **Save and Deploy**
+
+Every push to `main` triggers an automatic build + deploy.
+Pull requests get preview deployments with unique URLs.
+
+Custom domain: Workers & Pages > project > Custom domains > Set up a custom domain
+
+### Option B: Wrangler CLI (manual deploy)
+
+Install and authenticate (once):
 
 ```bash
 bun install
 npx wrangler login
 ```
 
-This opens a browser to authorize wrangler with your Cloudflare account.
-
-### First-time setup
-
-Create the Pages project on Cloudflare (only once):
+Create the project (once):
 
 ```bash
 npx wrangler pages project create portfolio-ejsadiarin --production-branch main
 ```
 
-Then point your custom domain in the Cloudflare dashboard:
-**Workers & Pages > portfolio-ejsadiarin > Custom domains > Set up a custom domain**
+> This creates the project with **no git association**. It works alongside
+> git-integrated deploys -- both push to the same `portfolio-ejsadiarin.pages.dev`.
 
-### Deploy to production
-
-Build and push the `dist/` folder in one command:
+Deploy to production:
 
 ```bash
 bun run deploy
 ```
 
-This runs `bun run build` then `wrangler pages deploy dist --project-name portfolio-ejsadiarin`.
-
-### Deploy a preview
-
-Preview deployments create a unique URL you can share for review:
+Deploy a preview:
 
 ```bash
 bun run deploy:preview
 ```
 
-### Manual deploy (without scripts)
+Manual deploy without scripts:
 
 ```bash
 bun run build
@@ -92,13 +100,13 @@ npx wrangler pages deploy dist --project-name portfolio-ejsadiarin
 
 ### Useful wrangler commands
 
-| Command                              | Description               |
-| ------------------------------------ | ------------------------- |
-| `npx wrangler pages project list`    | List your Pages projects  |
-| `npx wrangler pages deployment list` | List recent deployments   |
+| Command | Description |
+| --- | --- |
+| `npx wrangler pages project list` | List your Pages projects |
+| `npx wrangler pages deployment list` | List recent deployments |
 | `npx wrangler pages deployment tail` | Stream live function logs |
-| `npx wrangler login`                 | Re-authenticate           |
-| `npx wrangler logout`                | Sign out                  |
+| `npx wrangler login` | Re-authenticate |
+| `npx wrangler logout` | Sign out |
 
 ## Docker Compose startup
 
